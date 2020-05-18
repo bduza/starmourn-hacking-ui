@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Hacking Map Capture",
+        "isActive": "no",
+        "multiline": "no",
+        "multielineDelta": "0",
+        "matchall": "no",
+        "filter": "no",
+        "fireLength": "0",
+        "patterns": [
+            {
+                "pattern": "+",
+                "type": "startOfLine"
+            }
+        ]
+    },
+    {
+        "name": "Hacking Begun",
+        "isActive": "yes",
+        "multiline": "no",
+        "multielineDelta": "0",
+        "matchall": "no",
+        "filter": "no",
+        "fireLength": "0",
+        "patterns": [
+            {
+                "pattern": "You enter the commsphere.",
+                "type": "exactMatch"
+            }
+        ]
+    },
+    {
+        "name": "Hacking Ended",
+        "isActive": "yes",
+        "multiline": "no",
+        "multielineDelta": "0",
+        "matchall": "no",
+        "filter": "no",
+        "fireLength": "0",
+        "patterns": [
+            {
+                "pattern": "Your vision comes back into focus as your consciousness returns to your physical body.",
+                "type": "exactMatch"
+            }
+        ]
+    },
+    {
+        "name": "End of Hacking Map",
+        "isActive": "yes",
+        "multiline": "no",
+        "multielineDelta": "0",
+        "matchall": "no",
+        "filter": "no",
+        "fireLength": "0",
+        "patterns": [
+            {
+                "pattern": "Directory list of",
+                "type": "startOfLine"
+            }
+        ]
+    }
+]
