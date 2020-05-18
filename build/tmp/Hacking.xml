@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+  <ScriptPackage>
+    <ScriptGroup isActive="yes" isFolder="yes">
+  <name>Hacking</name>
+      <script/>
+  <packageName/>
+<eventHandlerList>
+</eventHandlerList>
+      <Script isActive="yes" isFolder="no">
+  <name>Hacking</name>
+        <script>hacking = hacking or {}
+
+function hacking.begin()
+    enableTrigger("Hacking Map Capture")
+    hacking.capping = false
+
+    if not hacking.console then
+        hacking.draw()
+    else
+        hacking.container:show()
+        clearWindow("hacking.console")
+    end
+end
+
+function hacking.completed()
+    disableTrigger("Hacking Map Capture")
+    hacking.capping = false
+    clearWindow("hacking.console")
+    hacking.container:hide()
+end
+</script>
+  <packageName/>
+<eventHandlerList>
+</eventHandlerList>
+</Script>
+      <Script isActive="yes" isFolder="no">
+  <name>hacking.draw</name>
+        <script>hacking = hacking or {}
+hacking.capping = false
+
+function hacking.draw()
+    hacking.container = hacking.container or Adjustable.Container:new({name = "hacking.container"})
+    hacking.console =
+        hacking.console or
+        Geyser.MiniConsole:new(
+            {
+                name = "hacking.console",
+                x = 0,
+                y = 0,
+                height = "100%",
+                width = "100%",
+                color = "black",
+                fontSize = hacking.fontsize,
+                font = hacking.font
+            },
+            hacking.container
+        )
+end
+</script>
+  <packageName/>
+<eventHandlerList>
+</eventHandlerList>
+</Script>
+      <Script isActive="yes" isFolder="no">
+  <name>Hacking Configs</name>
+        <script>hacking.fontsize = 30
+hacking.font = [[Bitstream Vera Sans Mono]]
+
+if hacking.console then
+    setFont("hacking.console", hacking.font)
+    setFontSize("hacking.console", hacking.fontsize)
+end
+</script>
+  <packageName/>
+<eventHandlerList>
+</eventHandlerList>
+</Script>
+</ScriptGroup>
+</ScriptPackage>
+  <AliasPackage>
+</AliasPackage>
+  <TimerPackage>
+</TimerPackage>
+  <TriggerPackage>
+    <TriggerGroup isActive="yes" isFolder="yes" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isColorTrigger="" isColorTriggerFg="" isColorTriggerBg="">
+  <name>Hacking</name>
+      <script/>
+  <triggerType>0</triggerType>
+  <conditonLineDelta>0</conditonLineDelta>
+  <mStayOpen>0</mStayOpen>
+  <mCommand/>
+  <packageName/>
+  <path/>
+  <mFgColor>#ff0000</mFgColor>
+  <mBgColor>#ffff00</mBgColor>
+  <mSoundFile/>
+  <colorTriggerFgColor>#000000</colorTriggerFgColor>
+  <colorTriggerBgColor>#000000</colorTriggerBgColor>
+      <regexCodeList>
+</regexCodeList>
+      <regexCodePropertyList>
+</regexCodePropertyList>
+      <Trigger isActive="no" isFolder="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isColorTrigger="" isColorTriggerFg="" isColorTriggerBg="">
+  <name>Hacking Map Capture</name>
+        <script>if not hacking.capping then
+    clearWindow("hacking.console")
+    hacking.capping = true
+end
+
+selectCurrentLine()
+copy()
+appendBuffer("hacking.console")
+deselect()
+</script>
+  <triggerType>0</triggerType>
+  <conditonLineDelta>0</conditonLineDelta>
+  <mStayOpen>0</mStayOpen>
+  <mCommand/>
+  <packageName/>
+  <path>Hacking</path>
+  <mFgColor>#ff0000</mFgColor>
+  <mBgColor>#ffff00</mBgColor>
+  <mSoundFile/>
+  <colorTriggerFgColor>#000000</colorTriggerFgColor>
+  <colorTriggerBgColor>#000000</colorTriggerBgColor>
+        <regexCodeList>
+<string>+</string>
+        </regexCodeList>
+        <regexCodePropertyList>
+<integer>2</integer>
+        </regexCodePropertyList>
+</Trigger>
+      <Trigger isActive="yes" isFolder="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isColorTrigger="" isColorTriggerFg="" isColorTriggerBg="">
+  <name>Hacking Begun</name>
+        <script>hacking.begin()
+</script>
+  <triggerType>0</triggerType>
+  <conditonLineDelta>0</conditonLineDelta>
+  <mStayOpen>0</mStayOpen>
+  <mCommand/>
+  <packageName/>
+  <path>Hacking</path>
+  <mFgColor>#ff0000</mFgColor>
+  <mBgColor>#ffff00</mBgColor>
+  <mSoundFile/>
+  <colorTriggerFgColor>#000000</colorTriggerFgColor>
+  <colorTriggerBgColor>#000000</colorTriggerBgColor>
+        <regexCodeList>
+<string>You enter the commsphere.</string>
+        </regexCodeList>
+        <regexCodePropertyList>
+<integer>3</integer>
+        </regexCodePropertyList>
+</Trigger>
+      <Trigger isActive="yes" isFolder="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isColorTrigger="" isColorTriggerFg="" isColorTriggerBg="">
+  <name>Hacking Ended</name>
+        <script>hacking.completed()
+</script>
+  <triggerType>0</triggerType>
+  <conditonLineDelta>0</conditonLineDelta>
+  <mStayOpen>0</mStayOpen>
+  <mCommand/>
+  <packageName/>
+  <path>Hacking</path>
+  <mFgColor>#ff0000</mFgColor>
+  <mBgColor>#ffff00</mBgColor>
+  <mSoundFile/>
+  <colorTriggerFgColor>#000000</colorTriggerFgColor>
+  <colorTriggerBgColor>#000000</colorTriggerBgColor>
+        <regexCodeList>
+<string>Your vision comes back into focus as your consciousness returns to your physical body.</string>
+        </regexCodeList>
+        <regexCodePropertyList>
+<integer>3</integer>
+        </regexCodePropertyList>
+</Trigger>
+      <Trigger isActive="yes" isFolder="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isColorTrigger="" isColorTriggerFg="" isColorTriggerBg="">
+  <name>End of Hacking Map</name>
+        <script>hacking.capping = false</script>
+  <triggerType>0</triggerType>
+  <conditonLineDelta>0</conditonLineDelta>
+  <mStayOpen>0</mStayOpen>
+  <mCommand/>
+  <packageName/>
+  <path>Hacking</path>
+  <mFgColor>#ff0000</mFgColor>
+  <mBgColor>#ffff00</mBgColor>
+  <mSoundFile/>
+  <colorTriggerFgColor>#000000</colorTriggerFgColor>
+  <colorTriggerBgColor>#000000</colorTriggerBgColor>
+        <regexCodeList>
+<string>Directory list of</string>
+        </regexCodeList>
+        <regexCodePropertyList>
+<integer>2</integer>
+        </regexCodePropertyList>
+</Trigger>
+</TriggerGroup>
+</TriggerPackage>
+  <KeyPackage>
+</KeyPackage>
+</MudletPackage>
